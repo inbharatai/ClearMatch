@@ -1,0 +1,6 @@
+{
+  "name": "ClearMatch AI",
+  "description": "Deterministic accounts payable 3-way invoice matching, discrepancy detection, and evidence reconciliation platform with server-side AI reasoning.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
