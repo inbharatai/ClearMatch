@@ -462,6 +462,38 @@ assert(
 );
 
 // -------------------------------------------------------------------
+// 13. Rebuilt 16:9 Presentation Deck & Future Innovations Verification
+// -------------------------------------------------------------------
+console.log('\n[SECTION 13: Rebuilt 16:9 Presentation & Future Enterprise Innovations]');
+const pptxPath = path.resolve(process.cwd(), 'public/ClearMatch_AI_Future_Enterprise_Innovation_One_Slide_Final.pptx');
+const pptxExists = fs.existsSync(pptxPath);
+const pptxSize = pptxExists ? fs.statSync(pptxPath).size : 0;
+
+assert(
+  'PPTX Rebuild: ClearMatch_AI_Future_Enterprise_Innovation_One_Slide_Final.pptx generated in public folder',
+  pptxExists && pptxSize > 10000,
+  'File exists with size > 10KB',
+  `Exists: ${pptxExists}, Size: ${(pptxSize / 1024).toFixed(1)} KB`
+);
+
+const pptxScriptContent = fs.readFileSync(path.resolve(process.cwd(), 'scripts/generate_pptx.ts'), 'utf-8');
+assert(
+  'PPTX Innovations: Rebuilt slide incorporates 3 Enterprise Innovations (Evidence Graph, Policy Gate, Workflow Builder)',
+  pptxScriptContent.includes('EVIDENCE GRAPH') &&
+    pptxScriptContent.includes('POLICY + APPROVAL GATE') &&
+    pptxScriptContent.includes('UNIVERSAL WORKFLOW BUILDER'),
+  'Contains all 3 Enterprise Innovations',
+  'Found 3 Enterprise Innovations'
+);
+
+assert(
+  'PPTX Integrity: Explicitly marked as Future Roadmap — Not Implemented Today',
+  pptxScriptContent.includes('FUTURE ROADMAP — NOT IMPLEMENTED TODAY'),
+  'Contains Future Roadmap label',
+  'Found Future Roadmap label'
+);
+
+// -------------------------------------------------------------------
 // Final Test Summary Table
 // -------------------------------------------------------------------
 console.log('\n======================================================');

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, FileSpreadsheet, Info, CheckCircle2, Lock } from 'lucide-react';
+import { ShieldCheck, FileSpreadsheet, Info, Download, Lock } from 'lucide-react';
 
 interface NavbarProps {
   onOpenSlide: () => void;
@@ -24,16 +24,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSlide, onOpenDisclosure })
               </span>
             </div>
             <p className="text-xs text-slate-400 hidden sm:block">
-              Deterministic AP 3-Way Reconciliation & Evidentiary Verification
+              Deterministic AP 3-Way Reconciliation &amp; Evidentiary Verification
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400">
+          <div className="hidden lg:flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400">
             <Lock className="w-3.5 h-3.5" />
-            <span>Server Gemini Boundary (No Client Key)</span>
+            <span>Server Gemini Boundary</span>
           </div>
+
+          <a
+            href="/api/download/presentation"
+            download="ClearMatch_AI_Future_Enterprise_Innovation_One_Slide_Final.pptx"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-teal-500/10 hover:bg-teal-500/20 text-teal-300 text-xs font-semibold border border-teal-500/30 transition-colors"
+            title="Download the revised one-slide PowerPoint presentation"
+          >
+            <Download className="w-3.5 h-3.5 text-teal-400" />
+            <span>Download PPTX</span>
+          </a>
 
           <button
             onClick={onOpenSlide}
@@ -41,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSlide, onOpenDisclosure })
             title="Open printable 16:9 executive presentation slide"
           >
             <FileSpreadsheet className="w-4 h-4" />
-            <span>16:9 Audit Slide</span>
+            <span>16:9 Slide</span>
           </button>
 
           <button

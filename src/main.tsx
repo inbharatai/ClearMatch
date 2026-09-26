@@ -1,7 +1,17 @@
-import {StrictMode} from 'react';
-import {createRoot} from 'react-dom/client';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
+
+// Suppress benign Vite dev HMR websocket rejection in preview iframe per platform guidelines
+if (typeof window !== 'undefined') {
+  window.addEventListener('unhandledrejection', (event) => {
+    const msg = event?.reason?.message || String(event?.reason || '');
+    if (msg.includes('WebSocket') || msg.includes('websocket')) {
+      event.preventDefault();
+    }
+  });
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

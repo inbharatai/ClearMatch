@@ -6,6 +6,8 @@
 
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
+import fs from 'fs';
+import http from 'http';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { GoogleGenAI } from '@google/genai';
@@ -69,6 +71,27 @@ app.get('/api/health', (_req: Request, res: Response) => {
     version: '1.0.0-audit-certified',
   });
 });
+
+/**
+ * PPTX Executive Presentation Download Endpoint
+ * Directly serves the 1-slide enterprise innovation deck answering:
+ * "What would you build next with more time?"
+ */
+app.get(
+  ['/api/download/presentation', '/ClearMatch_AI_Future_Enterprise_Innovation_One_Slide_Final.pptx'],
+  (_req: Request, res: Response): void => {
+    const filename = 'ClearMatch_AI_Future_Enterprise_Innovation_One_Slide_Final.pptx';
+    const filePath = path.resolve(__dirname, 'public', filename);
+
+    if (fs.existsSync(filePath)) {
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.presentationml.presentation');
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+      res.sendFile(filePath);
+    } else {
+      res.status(404).json({ error: 'Presentation file not found. Run npm run generate-pptx first.' });
+    }
+  }
+);
 
 /**
  * Reconcile Endpoint
@@ -445,11 +468,16 @@ app.post('/api/tasks', (req: Request, res: Response): void => {
 // Setup Vite middlewares in development, or serve static dist in production
 async function startServer() {
   const isProduction = process.env.NODE_ENV === 'production';
+  const httpServer = http.createServer(app);
 
   if (!isProduction) {
     const { createServer: createViteServer } = await import('vite');
+    const disableHmr = process.env.DISABLE_HMR === 'true';
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: disableHmr ? false : { server: httpServer },
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);
@@ -461,7 +489,7 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  httpServer.listen(PORT, '0.0.0.0', () => {
     console.log(`[ClearMatch AI] Server running on http://0.0.0.0:${PORT}`);
   });
 }
