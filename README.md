@@ -1,10 +1,8 @@
 # ClearMatch AI - Enterprise AP 3-Way Match & Discrepancy Reconciliation Engine
 
-<p align="center">
-  <img src="public/banner-hero.svg" alt="ClearMatch AI Hero Banner" width="100%">
-</p>
-
 <div align="center">
+
+[![ClearMatch AI Hero Banner](./banner-hero.svg)](https://ais-pre-fgoyjvaeaxivvtgl7hx3hj-890634372647.asia-east1.run.app)
 
 [![Auditor Test Suite](https://img.shields.io/badge/Audit%20Test%20Suite-41%2F41%20PASSED%20(100%25)-10b981?style=for-the-badge&logo=checkmarx)](https://github.com/)
 [![ICAI SA-501 Evidentiary Compliance](https://img.shields.io/badge/Statutory%20Compliance-ICAI%20SA--501%20%7C%20Ind%20AS%202-06b6d4?style=for-the-badge)](https://github.com/)
@@ -13,7 +11,7 @@
 
 **A zero-trust accounts payable internal control engine pairing deterministic 3-way mathematical verification with server-mediated Google Gemini reasoning, quotation provenance auditing, live GST statutory grounding, and human-in-the-loop disbursement governance.**
 
-[Live Application](https://ais-pre-fgoyjvaeaxivvtgl7hx3hj-890634372647.asia-east1.run.app) • [Audit API Health Check](/api/health)
+[Live Application](https://ais-pre-fgoyjvaeaxivvtgl7hx3hj-890634372647.asia-east1.run.app) • [Audit API Health Check](https://ais-pre-fgoyjvaeaxivvtgl7hx3hj-890634372647.asia-east1.run.app/api/health)
 
 </div>
 
@@ -31,9 +29,20 @@ In enterprise procurement and accounts payable (AP), invoice overpayment fraud, 
 
 ## 🔄 End-to-End 6-Stage AP Reconciliation Architecture
 
-<p align="center">
-  <img src="public/pipeline-architecture.svg" alt="ClearMatch AI 6-Stage Audit Pipeline" width="100%">
-</p>
+<div align="center">
+
+![ClearMatch AI 6-Stage Audit Pipeline](./pipeline-architecture.svg)
+
+</div>
+
+```mermaid
+flowchart LR
+    A[Stage 1: 4-Way Ingestion<br/>PO, INV, GRN, Email] --> B[Stage 2: Email Review<br/>Shortfall Correlation]
+    B --> C[Stage 3: Deterministic Math<br/>100 vs 80 = 20-Unit Shortfall]
+    C --> D[Stage 4: Evidentiary Hierarchy<br/>ICAI SA-501 & Ind AS 2]
+    D --> E[Stage 5: Provenance Audit<br/>Anti-Hallucination Gate]
+    E --> F[Stage 6: Human Governance<br/>AP Action Draft & Signoff]
+```
 
 ### Stage 1: 4-Way Ingestion & Artifact Preservation
 * Ingests the four transaction records comprising the reconciliation dossier:
@@ -77,7 +86,7 @@ In enterprise procurement and accounts payable (AP), invoice overpayment fraud, 
 
 <div align="center">
 
-![Accounts Payable Evidentiary Hierarchy](/evidentiary-hierarchy.svg)
+![Accounts Payable Evidentiary Hierarchy](./evidentiary-hierarchy.svg)
 
 </div>
 

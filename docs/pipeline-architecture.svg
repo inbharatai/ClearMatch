@@ -71,10 +71,10 @@
     <text x="14" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#cbd5e1">Tracked Statement:</text>
     <rect x="12" y="93" width="141" height="42" rx="6" fill="#451a03" stroke="#b45309" stroke-width="1"/>
     <text x="18" y="110" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" fill="#fef08a" font-style="italic">
-      &ldquo;Remaining 20 units
+      &#8220;Remaining 20 units
     </text>
     <text x="18" y="124" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" fill="#fef08a" font-style="italic">
-      will arrive later.&rdquo;
+      will arrive later.&#8221;
     </text>
     
     <rect x="12" y="145" width="141" height="75" rx="8" fill="#7f1d1d" fill-opacity="0.4" stroke="#dc2626" stroke-width="1"/>
@@ -143,9 +143,9 @@
     
     <rect x="12" y="135" width="141" height="85" rx="8" fill="#064e3b" fill-opacity="0.4" stroke="#059669"/>
     <text x="18" y="153" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="800" fill="#34d399">VERIFIED PROVENANCE</text>
-    <text x="18" y="170" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#a7f3d0">✓ &ldquo;Remaining 20 units...&rdquo;</text>
-    <text x="18" y="184" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#a7f3d0">✓ &ldquo;80 units accepted&rdquo;</text>
-    <text x="18" y="198" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#a7f3d0">✓ &ldquo;100 units @ 500&rdquo;</text>
+    <text x="18" y="170" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#a7f3d0">✓ &#8220;Remaining 20 units...&#8221;</text>
+    <text x="18" y="184" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#a7f3d0">✓ &#8220;80 units accepted&#8221;</text>
+    <text x="18" y="198" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#a7f3d0">✓ &#8220;100 units @ 500&#8221;</text>
     <text x="18" y="210" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" font-weight="700" fill="#6ee7b7">Zero Hallucination</text>
   </g>
 

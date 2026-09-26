@@ -488,14 +488,16 @@ assert(
 
 const bannerRootExists = fs.existsSync(path.resolve(process.cwd(), 'banner-hero.svg'));
 const pipelineRootExists = fs.existsSync(path.resolve(process.cwd(), 'pipeline-architecture.svg'));
+const hierarchyRootExists = fs.existsSync(path.resolve(process.cwd(), 'evidentiary-hierarchy.svg'));
 const bannerPublicExists = fs.existsSync(path.resolve(process.cwd(), 'public/banner-hero.svg'));
 const pipelinePublicExists = fs.existsSync(path.resolve(process.cwd(), 'public/pipeline-architecture.svg'));
+const hierarchyPublicExists = fs.existsSync(path.resolve(process.cwd(), 'public/evidentiary-hierarchy.svg'));
 
 assert(
-  'Image Assets: banner-hero.svg and pipeline-architecture.svg exist in root and public',
-  bannerRootExists && pipelineRootExists && bannerPublicExists && pipelinePublicExists,
-  'All 4 asset paths exist',
-  `Root: banner=${bannerRootExists}, pipeline=${pipelineRootExists} | Public: banner=${bannerPublicExists}, pipeline=${pipelinePublicExists}`
+  'Image Assets: All README SVGs exist across root and public folders',
+  bannerRootExists && pipelineRootExists && hierarchyRootExists && bannerPublicExists && pipelinePublicExists && hierarchyPublicExists,
+  'All 6 asset paths exist',
+  `Root: banner=${bannerRootExists}, pipeline=${pipelineRootExists}, hierarchy=${hierarchyRootExists} | Public: banner=${bannerPublicExists}, pipeline=${pipelinePublicExists}, hierarchy=${hierarchyPublicExists}`
 );
 
 // -------------------------------------------------------------------
