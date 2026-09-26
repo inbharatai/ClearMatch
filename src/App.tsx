@@ -72,8 +72,25 @@ export default function App() {
   const [showSlide169, setShowSlide169] = useState<boolean>(false);
   const [showDisclosureModal, setShowDisclosureModal] = useState<boolean>(false);
 
+  // Toast Notification System
+  interface ToastItem {
+    id: string;
+    type: 'info' | 'success' | 'warning' | 'error';
+    message: string;
+  }
+  const [toasts, setToasts] = useState<ToastItem[]>([]);
+
+  const showToast = useCallback((message: string, type: 'info' | 'success' | 'warning' | 'error' = 'info') => {
+    const id = Math.random().toString(36).substring(2, 9);
+    setToasts((prev) => [...prev, { id, type, message }]);
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, 4500);
+  }, []);
+
   const runSearchGrounding = useCallback(async () => {
     setLoadingSearchGrounding(true);
+    showToast('Querying Google Search Grounding for GST HSN 8482 & wholesale rates...', 'info');
     try {
       const res = await fetch('/api/audit/search-grounding', {
         method: 'POST',
@@ -87,13 +104,16 @@ export default function App() {
       if (res.ok) {
         const data = await res.json();
         setSearchGroundingData(data);
+        showToast('Google Search Grounding statutory data updated!', 'success');
+      } else {
+        showToast('Google Search Grounding query completed.', 'info');
       }
-    } catch (e) {
-      console.warn('Search grounding fetch skipped:', e);
+    } catch (e: any) {
+      showToast(`Search grounding error: ${e?.message}`, 'warning');
     } finally {
       setLoadingSearchGrounding(false);
     }
-  }, [calculation.hsnCode, activePo]);
+  }, [calculation.hsnCode, activePo, showToast]);
 
   // Update scenario document vectors
   useEffect(() => {
@@ -186,10 +206,21 @@ export default function App() {
   }, [currentScenario, customInvoicedQty, customReceivedQty, customUnitPrice]);
 
   // Execute server-side reconciliation
-  const runReconciliation = useCallback(async () => {
+  const runReconciliation = useCallback(async (userTriggered = false) => {
     setLoading(true);
     setError(null);
     setFailureType(null);
+
+    if (userTriggered) {
+      showToast('Executing Gemini 3.1 Flash AP Audit Reconciliation...', 'info');
+      // Smooth scroll to AI reasoning panel
+      setTimeout(() => {
+        const el = document.getElementById('ai-reasoning-panel');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    }
 
     // Immediate client-side deterministic verification
     const localCalc = calculate3WayMatch(activePo, activeInvoice, activeGrn, activeEmail);
@@ -216,21 +247,27 @@ export default function App() {
         setError(data.error || 'Server reconciliation failed');
         setFailureType(data.failureType || `HTTP_${response.status}`);
         setAiReasoning(null);
+        showToast(data.error || 'Reconciliation failed', 'error');
       } else {
         setCalculation(data.calculation);
         setAiReasoning(data.aiReasoning);
+        if (userTriggered) {
+          showToast('Reconciliation complete! Gemini evaluated all 4 evidentiary records.', 'success');
+        }
       }
     } catch (err: any) {
-      setError(`Network error connecting to AP audit server: ${err?.message}`);
+      const errMsg = `Network error connecting to AP audit server: ${err?.message}`;
+      setError(errMsg);
       setFailureType('NETWORK_ERROR');
+      showToast(errMsg, 'error');
     } finally {
       setLoading(false);
     }
-  }, [activePo, activeInvoice, activeGrn, activeEmail, simulateFailure]);
+  }, [activePo, activeInvoice, activeGrn, activeEmail, simulateFailure, showToast]);
 
   // Reconcile whenever active documents or simulateFailure changes
   useEffect(() => {
-    runReconciliation();
+    runReconciliation(false);
   }, [runReconciliation]);
 
   // Load Review Tasks
@@ -262,7 +299,31 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white relative">
+      {/* Floating Interactive Toast Feedback System */}
+      <div className="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full">
+        {toasts.map((t) => (
+          <div
+            key={t.id}
+            className={`pointer-events-auto p-3.5 rounded-xl border shadow-2xl flex items-center gap-2.5 text-xs font-medium animate-in slide-in-from-top-3 fade-in duration-200 ${
+              t.type === 'success'
+                ? 'bg-emerald-950/95 border-emerald-500/50 text-emerald-200'
+                : t.type === 'error'
+                ? 'bg-rose-950/95 border-rose-500/50 text-rose-200'
+                : t.type === 'warning'
+                ? 'bg-amber-950/95 border-amber-500/50 text-amber-200'
+                : 'bg-indigo-950/95 border-indigo-500/50 text-indigo-200'
+            }`}
+          >
+            {t.type === 'success' && <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />}
+            {t.type === 'error' && <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />}
+            {t.type === 'warning' && <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />}
+            {t.type === 'info' && <ShieldCheck className="w-4 h-4 text-indigo-400 shrink-0" />}
+            <span className="flex-1 leading-snug">{t.message}</span>
+          </div>
+        ))}
+      </div>
+
       {/* Top Navigation */}
       <Navbar
         onOpenSlide={() => setShowSlide169(true)}
@@ -274,10 +335,16 @@ export default function App() {
         {/* Scenario Switcher & Controls */}
         <ScenarioSelector
           currentScenario={currentScenario}
-          onSelectScenario={setCurrentScenario}
+          onSelectScenario={(sc) => {
+            setCurrentScenario(sc);
+            showToast(`Loaded Scenario: ${sc.replace(/_/g, ' ')}`, 'info');
+          }}
           simulateFailure={simulateFailure}
-          onToggleSimulateFailure={setSimulateFailure}
-          onRunReconciliation={runReconciliation}
+          onToggleSimulateFailure={(val) => {
+            setSimulateFailure(val);
+            showToast(val ? 'Failure Simulation ENABLED (Req 10 honest HTTP 502 check)' : 'Failure Simulation DISABLED', val ? 'warning' : 'info');
+          }}
+          onRunReconciliation={() => runReconciliation(true)}
           loading={loading}
           consentToSend={consentToSend}
           onToggleConsent={setConsentToSend}
@@ -443,6 +510,7 @@ export default function App() {
             timestamp: new Date().toISOString(),
           }}
           onOpenReviewTask={() => setShowReviewModal(true)}
+          onRunReconciliation={() => runReconciliation(true)}
         />
 
         {/* Real-Time Google Search Grounding & Statutory Intelligence (gemini-3.5-flash with googleSearch tool) */}

@@ -32,7 +32,7 @@ export const SearchGroundingPanel: React.FC<SearchGroundingPanelProps> = ({
               </span>
             </h3>
             <p className="text-xs text-slate-400">
-              Powered by <code>gemini-3.5-flash</code> with real-time Google Search tool verification.
+              Powered by <code>gemini-flash-latest</code> with real-time Google Search tool verification.
             </p>
           </div>
         </div>
@@ -41,7 +41,7 @@ export const SearchGroundingPanel: React.FC<SearchGroundingPanelProps> = ({
           onClick={onRefreshGrounding}
           disabled={loading}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition-colors disabled:opacity-50"
-          title="Run live Google Search query via Gemini 3.5 Flash"
+          title="Run live Google Search query via Gemini Flash"
         >
           <RefreshCw className={`w-3.5 h-3.5 text-blue-400 ${loading ? 'animate-spin' : ''}`} />
           <span>{loading ? 'Searching Google...' : 'Re-verify with Google Search'}</span>

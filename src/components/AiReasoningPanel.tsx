@@ -11,6 +11,7 @@ interface AiReasoningPanelProps {
   activeSources: { id: string; rawText: string; sourceType: string }[];
   fullResultJson?: object;
   onOpenReviewTask?: () => void;
+  onRunReconciliation?: () => void;
 }
 
 export const AiReasoningPanel: React.FC<AiReasoningPanelProps> = ({
@@ -21,6 +22,7 @@ export const AiReasoningPanel: React.FC<AiReasoningPanelProps> = ({
   activeSources,
   fullResultJson,
   onOpenReviewTask,
+  onRunReconciliation,
 }) => {
   const [customQuote, setCustomQuote] = useState('');
   const [selectedSourceId, setSelectedSourceId] = useState(activeSources[0]?.id || '');
@@ -76,7 +78,12 @@ Accounts Payable Verification Team`;
   );
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-6">
+    <div
+      id="ai-reasoning-panel"
+      className={`bg-slate-900 border transition-all duration-300 rounded-2xl p-5 shadow-xl space-y-6 ${
+        loading ? 'border-indigo-500 shadow-indigo-500/20 ring-1 ring-indigo-500/50' : 'border-slate-800'
+      }`}
+    >
       {/* Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
         <div>
@@ -94,10 +101,22 @@ Accounts Payable Verification Team`;
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          {onRunReconciliation && (
+            <button
+              onClick={onRunReconciliation}
+              disabled={loading}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow transition-colors disabled:opacity-50 cursor-pointer"
+              title="Trigger real-time server-side Gemini reconciliation"
+            >
+              <Sparkles className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+              <span>{loading ? 'Reconciling...' : 'Re-Run AI Audit'}</span>
+            </button>
+          )}
+
           <button
             onClick={handleDownloadJson}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition-colors cursor-pointer"
             title="Download full analysis payload as clearmatch-analysis.json"
           >
             <Download className="w-3.5 h-3.5 text-indigo-400" />

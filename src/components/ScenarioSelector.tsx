@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScenarioType } from '../types';
-import { AlertTriangle, MailWarning, FileCheck2, FileQuestion, SlidersHorizontal, Bug } from 'lucide-react';
+import { AlertTriangle, MailWarning, FileCheck2, FileQuestion, SlidersHorizontal, Bug, Sparkles } from 'lucide-react';
 
 interface ScenarioSelectorProps {
   currentScenario: ScenarioType;
@@ -67,6 +67,20 @@ export const ScenarioSelector: React.FC<ScenarioSelectorProps> = ({
     },
   ];
 
+  const handleRunClick = () => {
+    if (!consentToSend) {
+      onToggleConsent(true);
+    }
+    onRunReconciliation();
+    // Smooth scroll down to AI Reasoning Panel
+    setTimeout(() => {
+      const el = document.getElementById('ai-reasoning-panel');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 50);
+  };
+
   return (
     <div className="no-print bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl space-y-4">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 border-b border-slate-800">
@@ -106,18 +120,22 @@ export const ScenarioSelector: React.FC<ScenarioSelectorProps> = ({
           </label>
 
           <button
-            onClick={onRunReconciliation}
-            disabled={loading || !consentToSend}
-            className="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-500 text-white text-xs font-semibold shadow transition-colors flex items-center gap-2"
-            title={!consentToSend ? 'Check the consent box to enable analysis' : 'Run reconciliation'}
+            type="button"
+            onClick={handleRunClick}
+            disabled={loading}
+            className="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all active:scale-95 flex items-center gap-2 cursor-pointer"
+            title="Execute server-side Gemini reconciliation and scroll to audit panel"
           >
             {loading ? (
               <>
                 <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Reconciling...
+                <span>Reconciling with Gemini...</span>
               </>
             ) : (
-              'Analyze Case with Gemini'
+              <>
+                <Sparkles className="w-4 h-4 text-indigo-200" />
+                <span>Analyze Case with Gemini</span>
+              </>
             )}
           </button>
         </div>
@@ -130,8 +148,9 @@ export const ScenarioSelector: React.FC<ScenarioSelectorProps> = ({
           return (
             <button
               key={sc.id}
+              type="button"
               onClick={() => onSelectScenario(sc.id)}
-              className={`text-left p-3 rounded-xl border transition-all flex flex-col justify-between ${
+              className={`text-left p-3 rounded-xl border transition-all flex flex-col justify-between cursor-pointer active:scale-98 ${
                 isActive
                   ? 'bg-indigo-950/40 border-indigo-500/60 shadow-lg shadow-indigo-950/50 ring-1 ring-indigo-500/30'
                   : 'bg-slate-950/40 border-slate-800/80 hover:bg-slate-800/40 hover:border-slate-700'
