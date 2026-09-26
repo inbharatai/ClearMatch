@@ -147,9 +147,50 @@ export function verifyQuoteAgainstSource(
     const idx = normalizedSource.indexOf(normalizedQuote);
     const start = Math.max(0, idx - 30);
     const end = Math.min(normalizedSource.length, idx + normalizedQuote.length + 30);
-    matchContext = `...${source.rawText.substring(start, end).replace(/\n/g, ' ')}...`;
+    matchContext = `Confirmed verbatim match in ${sourceId} (${source.sourceType}): "...${source.rawText.substring(start, end).replace(/\n/g, ' ')}..."`;
   } else {
-    matchContext = 'Quotation not found verbatim in source document. Flagged as unverified/hallucination risk.';
+    // Cross-document check: Did this quote actually come from a different document in the dossier?
+    const otherMatch = sources.find((other) => {
+      if (other.id === sourceId) return false;
+      const otherNorm = normalizeForSearch(other.rawText);
+      return otherNorm.includes(normalizedQuote);
+    });
+
+    if (otherMatch) {
+      const otherIdx = normalizeForSearch(otherMatch.rawText).indexOf(normalizedQuote);
+      const start = Math.max(0, otherIdx - 20);
+      const end = Math.min(otherMatch.rawText.length, otherIdx + normalizedQuote.length + 30);
+      const snippet = otherMatch.rawText.substring(start, end).replace(/\n/g, ' ');
+      matchContext = `Attribution mismatch: Text NOT found in ${sourceId} (${source.sourceType}). It is from ${otherMatch.id} (${otherMatch.sourceType}): "...${snippet}..."`;
+    } else {
+      // Check for partial substring match (e.g., "20 units will arrive" vs "Remaining 20 units will arrive later")
+      let partialMatchFound: { docId: string; docType: string; snippet: string } | null = null;
+      for (const s of sources) {
+        const sNorm = normalizeForSearch(s.rawText);
+        const words = normalizedQuote.split(' ').filter((w) => w.length > 2);
+        for (let len = words.length - 1; len >= 2; len--) {
+          const sub = words.slice(0, len).join(' ');
+          if (sNorm.includes(sub)) {
+            const idx = sNorm.indexOf(sub);
+            const start = Math.max(0, idx - 20);
+            const end = Math.min(s.rawText.length, idx + sub.length + 40);
+            partialMatchFound = {
+              docId: s.id,
+              docType: s.sourceType,
+              snippet: s.rawText.substring(start, end).replace(/\n/g, ' '),
+            };
+            break;
+          }
+        }
+        if (partialMatchFound) break;
+      }
+
+      if (partialMatchFound) {
+        matchContext = `Not found verbatim in ${sourceId} (${source.sourceType}). Closest match in ${partialMatchFound.docId} (${partialMatchFound.docType}): "...${partialMatchFound.snippet}..."`;
+      } else {
+        matchContext = `Quotation not found in ${sourceId} (${source.sourceType}). Zero-trust anti-hallucination defense active.`;
+      }
+    }
   }
 
   return {

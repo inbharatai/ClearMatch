@@ -359,10 +359,66 @@ Accounts Payable Verification Team`;
 
             {/* Interactive Quotation Auditor for Invigilators */}
             <div className="pt-2">
-              <form onSubmit={handleVerifyCustomQuote} className="p-3 rounded-lg bg-slate-900/70 border border-slate-800 space-y-2">
-                <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider block">
-                  Interactive Live Quote Auditor (Invigilator Test Tool)
-                </span>
+              <form onSubmit={handleVerifyCustomQuote} className="p-3 rounded-lg bg-slate-900/70 border border-slate-800 space-y-2.5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                  <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider block">
+                    Interactive Live Quote Auditor (Invigilator Test Tool)
+                  </span>
+                  <span className="text-[10px] text-slate-500 font-mono">
+                    Requirement 9: Programmatic anti-hallucination verification
+                  </span>
+                </div>
+
+                {/* Quick-test sample chips */}
+                <div className="flex flex-wrap items-center gap-1.5 pt-0.5 text-[11px]">
+                  <span className="text-slate-400 text-[10px] uppercase font-mono mr-1">Quick Tests:</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCustomQuote('Remaining 20 units will arrive later.');
+                      const emailDoc = activeSources.find((s) => s.id.includes('EML') || s.sourceType.toLowerCase().includes('email'));
+                      if (emailDoc) setSelectedSourceId(emailDoc.id);
+                    }}
+                    className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10.5px] border border-slate-700 transition-colors cursor-pointer"
+                  >
+                    ✓ Email Quote (EML)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCustomQuote('100 units @ 500');
+                      const poDoc = activeSources.find((s) => s.id.includes('PO'));
+                      if (poDoc) setSelectedSourceId(poDoc.id);
+                    }}
+                    className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10.5px] border border-slate-700 transition-colors cursor-pointer"
+                  >
+                    ✓ PO Terms (PO)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCustomQuote('80 units accepted');
+                      const grnDoc = activeSources.find((s) => s.id.includes('GRN'));
+                      if (grnDoc) setSelectedSourceId(grnDoc.id);
+                    }}
+                    className="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10.5px] border border-slate-700 transition-colors cursor-pointer"
+                  >
+                    ✓ GRN Receipt (GRN)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCustomQuote('20 units will arrive late');
+                      const poDoc = activeSources.find((s) => s.id.includes('PO'));
+                      if (poDoc) setSelectedSourceId(poDoc.id);
+                    }}
+                    className="px-2 py-0.5 rounded bg-rose-950/60 hover:bg-rose-900/60 text-rose-300 text-[10.5px] border border-rose-800/60 transition-colors cursor-pointer"
+                    title="Tests cross-document attribution mismatch: testing vendor email text against PO document"
+                  >
+                    ✗ Attribution Mismatch Test
+                  </button>
+                </div>
+
                 <div className="flex flex-col sm:flex-row gap-2">
                   <input
                     type="text"
@@ -384,17 +440,37 @@ Accounts Payable Verification Team`;
                   </select>
                   <button
                     type="submit"
-                    className="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold"
+                    className="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold cursor-pointer transition-colors"
                   >
                     Verify Provenance
                   </button>
                 </div>
+
                 {customVerification && (
-                  <div className={`p-2 rounded text-xs font-mono flex items-center gap-2 ${
-                    customVerification.verifiedInSource ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/40' : 'bg-rose-950/40 text-rose-300 border border-rose-500/40'
-                  }`}>
-                    {customVerification.verifiedInSource ? <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" /> : <XCircle className="w-4 h-4 text-rose-400 shrink-0" />}
-                    <span>{customVerification.verifiedInSource ? 'PASSED: Exact substring confirmed in raw text.' : 'FAILED: Text not found in claimed document (Anti-Hallucination Trigger).'}</span>
+                  <div
+                    className={`p-2.5 rounded-lg text-xs font-mono space-y-1 ${
+                      customVerification.verifiedInSource
+                        ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/40'
+                        : 'bg-rose-950/40 text-rose-300 border border-rose-500/40'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 font-bold">
+                      {customVerification.verifiedInSource ? (
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                      ) : (
+                        <XCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                      )}
+                      <span>
+                        {customVerification.verifiedInSource
+                          ? 'PASSED: Exact substring confirmed in raw text.'
+                          : 'FAILED: Text not found in claimed document (Anti-Hallucination Trigger).'}
+                      </span>
+                    </div>
+                    {customVerification.matchContext && (
+                      <div className="text-[11px] text-slate-300 pl-6 break-words font-sans">
+                        {customVerification.matchContext}
+                      </div>
+                    )}
                   </div>
                 )}
               </form>
