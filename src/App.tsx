@@ -337,6 +337,89 @@ export default function App() {
           onOpenReviewModal={() => setShowReviewModal(true)}
         />
 
+        {/* Auditor 6-Step Visual Verification Roadmap */}
+        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+              <h3 className="text-xs font-bold text-white uppercase tracking-wider">
+                Auditor Audit Trail: 6-Step Verification Architecture
+              </h3>
+            </div>
+            <span className="text-[11px] font-mono text-slate-400">
+              Complete AP Control & Anti-Hallucination Pipeline
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 text-xs">
+            {/* Step 1 */}
+            <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
+              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 font-bold">
+                STEP 1
+              </span>
+              <p className="font-semibold text-white text-[11px]">4-Way Ingestion</p>
+              <p className="text-[10px] text-slate-400 leading-tight">
+                PO (100) + INV (100) + GRN (80) + Email (20)
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="p-2.5 rounded-xl bg-amber-950/30 border border-amber-500/40 space-y-1">
+              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">
+                STEP 2
+              </span>
+              <p className="font-semibold text-amber-200 text-[11px]">Supplier Email Review</p>
+              <p className="text-[10px] text-amber-300/80 leading-tight">
+                Tracks &ldquo;Remaining 20 units will arrive later&rdquo;
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
+              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-400 font-bold">
+                STEP 3
+              </span>
+              <p className="font-semibold text-white text-[11px]">3-Way Math Match</p>
+              <p className="text-[10px] text-slate-400 leading-tight">
+                Deterministic: ₹10,000 hold on 20 units
+              </p>
+            </div>
+
+            {/* Step 4 */}
+            <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
+              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-400 font-bold">
+                STEP 4
+              </span>
+              <p className="font-semibold text-white text-[11px]">Evidentiary Hierarchy</p>
+              <p className="text-[10px] text-slate-400 leading-tight">
+                GRN &gt; Email (Ind AS 2 / ICAI SA-501)
+              </p>
+            </div>
+
+            {/* Step 5 */}
+            <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
+              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">
+                STEP 5
+              </span>
+              <p className="font-semibold text-white text-[11px]">Provenance Proof</p>
+              <p className="text-[10px] text-slate-400 leading-tight">
+                Verbatim citation substring check
+              </p>
+            </div>
+
+            {/* Step 6 */}
+            <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
+              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-400 font-bold">
+                STEP 6
+              </span>
+              <p className="font-semibold text-white text-[11px]">Human AP Action</p>
+              <p className="text-[10px] text-slate-400 leading-tight">
+                Draft letter held; human authorization
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Document Repository & Cross-Verification Matrix */}
         <DocumentComparison
           po={activePo}
