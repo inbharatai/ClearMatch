@@ -1,17 +1,19 @@
 # ClearMatch AI - Enterprise AP 3-Way Match & Discrepancy Reconciliation Engine
 
+<p align="center">
+  <img src="public/banner-hero.svg" alt="ClearMatch AI Hero Banner" width="100%">
+</p>
+
 <div align="center">
 
-![ClearMatch AI Hero Banner](/banner-hero.svg)
-
-[![Auditor Test Suite](https://img.shields.io/badge/Audit%20Test%20Suite-38%2F38%20PASSED%20(100%25)-10b981?style=for-the-badge&logo=checkmarx)](https://github.com/)
+[![Auditor Test Suite](https://img.shields.io/badge/Audit%20Test%20Suite-41%2F41%20PASSED%20(100%25)-10b981?style=for-the-badge&logo=checkmarx)](https://github.com/)
 [![ICAI SA-501 Evidentiary Compliance](https://img.shields.io/badge/Statutory%20Compliance-ICAI%20SA--501%20%7C%20Ind%20AS%202-06b6d4?style=for-the-badge)](https://github.com/)
 [![Server-Side Gemini](https://img.shields.io/badge/AI%20Engine-Gemini%203.1%20Flash%20%2F%203.8%20Flash-4f46e5?style=for-the-badge&logo=google)](https://github.com/)
 [![SOX Cryptographic Non-Repudiation](https://img.shields.io/badge/Audit%20Trail-SOX%20Non--Repudiation%20Hash-f59e0b?style=for-the-badge)](https://github.com/)
 
 **A zero-trust accounts payable internal control engine pairing deterministic 3-way mathematical verification with server-mediated Google Gemini reasoning, quotation provenance auditing, live GST statutory grounding, and human-in-the-loop disbursement governance.**
 
-[Live Application](https://ais-pre-fgoyjvaeaxivvtgl7hx3hj-890634372647.asia-east1.run.app) • [Executive 16:9 Presentation (.PPTX)](/ClearMatch-One-Slide.pptx) • [Audit API Health Check](/api/health)
+[Live Application](https://ais-pre-fgoyjvaeaxivvtgl7hx3hj-890634372647.asia-east1.run.app) • [Audit API Health Check](/api/health)
 
 </div>
 
@@ -29,11 +31,9 @@ In enterprise procurement and accounts payable (AP), invoice overpayment fraud, 
 
 ## 🔄 End-to-End 6-Stage AP Reconciliation Architecture
 
-<div align="center">
-
-![ClearMatch AI 6-Stage Audit Pipeline](/pipeline-architecture.svg)
-
-</div>
+<p align="center">
+  <img src="public/pipeline-architecture.svg" alt="ClearMatch AI 6-Stage Audit Pipeline" width="100%">
+</p>
 
 ### Stage 1: 4-Way Ingestion & Artifact Preservation
 * Ingests the four transaction records comprising the reconciliation dossier:
@@ -117,7 +117,6 @@ All corporate identities, invoices (e.g. `INV-2026-4412`), purchase orders (`PO-
 The application is built exclusively using standard, publicly available open-source libraries:
 - `react` & `react-dom` (v19)
 - `@google/genai` (v2.4.0)
-- `pptxgenjs` (v4.0.1) - Native 16:9 PowerPoint slide generation
 - `express` (v4.21.2)
 - `vite` (v8.3.0) & `@vitejs/plugin-react`
 - `@tailwindcss/vite` & `tailwindcss` (v4.3.3)
@@ -146,18 +145,14 @@ ClearMatch AI integrates live **Google Search Grounding** using `gemini-3.5-flas
 
 ---
 
-## 🎯 Cryptographic Audit Fingerprint & Presentation Artifacts
+## 🎯 Cryptographic Audit Fingerprint & Exportable Artifacts
 
 * **Cryptographic Audit Fingerprint**: Every reconciliation generates a deterministic 64-bit hexadecimal hash (`auditHash`, e.g. `0XA9E3D4AFEFEE2FBF`) binding PO, Invoice, GRN, variances, and ruling for SOX compliance and non-repudiation.
-* **Official 16:9 Presentation Slide (.PPTX)**:
-  * Generated at `docs/ClearMatch-One-Slide.pptx` and `public/ClearMatch-One-Slide.pptx`.
-  * Downloadable directly from the UI via the **"Download .PPTX"** button.
-  * Printable as a landscape PDF via browser print preview (`@media print`).
-* **Exportable Audit Dossier**: 1-click **"Download Analysis JSON"** produces `clearmatch-analysis.json` containing complete calculations, AI reasoning, quotations, model provenance, and cryptographic hash.
+* **Exportable Audit Dossier**: 1-click **"Download Audit JSON"** produces `clearmatch-analysis.json` containing complete calculations, AI reasoning, quotations, model provenance, and cryptographic hash.
 
 ---
 
-## 🧪 Comprehensive Automated Test Matrix (38 / 38 Passing)
+## 🧪 Comprehensive Automated Test Matrix (41 / 41 Passing)
 
 Execute the full suite anytime via `npm test` (`tsx tests/audit.test.ts`):
 
@@ -242,11 +237,8 @@ cp .env.example .env
 
 ### 3. Execution Commands
 ```bash
-# Run automated audit test suite (38 assertions)
+# Run automated audit test suite (41 assertions)
 npm test
-
-# Generate official 16:9 PowerPoint slide
-npm run generate-pptx
 
 # Run TypeScript typecheck / lint
 npm run lint
@@ -254,7 +246,7 @@ npm run lint
 # Start server in development mode (port 3000)
 npm run dev
 
-# Build production bundle (includes automated PPTX generation)
+# Build production bundle
 npm run build
 ```
 

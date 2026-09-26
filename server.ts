@@ -73,27 +73,6 @@ app.get('/api/health', (_req: Request, res: Response) => {
 });
 
 /**
- * PPTX Executive Presentation Download Endpoint
- * Directly serves the 1-slide enterprise innovation deck answering:
- * "What would you build next with more time?"
- */
-app.get(
-  ['/api/download/presentation', '/ClearMatch_AI_Future_Enterprise_Innovation_One_Slide_Final.pptx'],
-  (_req: Request, res: Response): void => {
-    const filename = 'ClearMatch_AI_Future_Enterprise_Innovation_One_Slide_Final.pptx';
-    const filePath = path.resolve(__dirname, 'public', filename);
-
-    if (fs.existsSync(filePath)) {
-      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.presentationml.presentation');
-      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-      res.sendFile(filePath);
-    } else {
-      res.status(404).json({ error: 'Presentation file not found. Run npm run generate-pptx first.' });
-    }
-  }
-);
-
-/**
  * Reconcile Endpoint
  * Performs deterministic AP 3-way matching and optional server-side Gemini semantic analysis.
  */

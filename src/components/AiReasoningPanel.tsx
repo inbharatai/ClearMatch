@@ -165,6 +165,18 @@ Accounts Payable Verification Team`;
               <p className="text-[11px] text-rose-300/80 pt-1">
                 Notice: ClearMatch AI adheres to strict audit integrity rules. We never deliver deceptive mock or canned AI reasoning when upstream services fail.
               </p>
+              {onRunReconciliation && (
+                <div className="pt-2">
+                  <button
+                    onClick={onRunReconciliation}
+                    disabled={loading}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold shadow transition-colors cursor-pointer disabled:opacity-50"
+                  >
+                    <Sparkles className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+                    <span>{loading ? 'Re-auditing...' : 'Retry AP Reconciliation'}</span>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="50%" stop-color="#090d1f"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <radialGradient id="indigoGlow" cx="20%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="cyanGlow" cx="80%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="amberGlow" cx="90%" cy="20%" r="40%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Card Gradients -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.85"/>
+    </linearGradient>
+
+    <linearGradient id="emailCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#451a03" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#1e1b4b" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#e0e7ff"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="500" fill="url(#bgGrad)"/>
+  <rect width="1200" height="500" fill="url(#indigoGlow)"/>
+  <rect width="1200" height="500" fill="url(#cyanGlow)"/>
+  <rect width="1200" height="500" fill="url(#amberGlow)"/>
+
+  <!-- Subtle Grid Overlay -->
+  <g stroke="#334155" stroke-opacity="0.15" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="800" y1="0" x2="800" y2="500"/>
+    <line x1="1000" y1="0" x2="1000" y2="500"/>
+  </g>
+
+  <!-- Top Badges -->
+  <g transform="translate(60, 45)">
+    <rect width="210" height="30" rx="15" fill="#4f46e5" fill-opacity="0.2" stroke="#6366f1" stroke-width="1"/>
+    <circle cx="16" cy="15" r="4" fill="#10b981"/>
+    <text x="28" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#a5b4fc" letter-spacing="1.2">ENTERPRISE AP AUDIT</text>
+
+    <rect x="225" width="220" height="30" rx="15" fill="#06b6d4" fill-opacity="0.15" stroke="#0891b2" stroke-width="1"/>
+    <text x="240" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#67e8f9" letter-spacing="1">GOOGLE GEMINI REASONING</text>
+  </g>
+
+  <!-- Title & Description -->
+  <g transform="translate(60, 135)">
+    <text font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900" fill="url(#textGrad)" letter-spacing="-0.8">
+      ClearMatch AI
+    </text>
+    <text y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="600" fill="#94a3b8" letter-spacing="-0.2">
+      Accounts Payable 3-Way Match &amp; Discrepancy Reconciliation Engine
+    </text>
+    <text y="70" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="400" fill="#64748b">
+      Deterministic internal controls paired with server-side AI reasoning, quotation provenance auditing,
+    </text>
+    <text y="90" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="400" fill="#64748b">
+      and statutory GST grounding to eliminate accounts payable fraud and invoice overpayment.
+    </text>
+  </g>
+
+  <!-- Live Metric Pills -->
+  <g transform="translate(60, 275)">
+    <!-- Pill 1 -->
+    <rect width="130" height="48" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="14" y="20" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" fill="#64748b" letter-spacing="0.5">INVOICED VALUE</text>
+    <text x="14" y="38" font-family="ui-monospace, monospace" font-size="15" font-weight="700" fill="#ffffff">₹50,000</text>
+
+    <!-- Pill 2 -->
+    <rect x="145" width="130" height="48" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="159" y="20" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" fill="#64748b" letter-spacing="0.5">ACCEPTED GRN</text>
+    <text x="159" y="38" font-family="ui-monospace, monospace" font-size="15" font-weight="700" fill="#10b981">₹40,000</text>
+
+    <!-- Pill 3 -->
+    <rect x="290" width="130" height="48" rx="10" fill="#0f172a" stroke="#f43f5e" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="304" y="20" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" fill="#fda4af" letter-spacing="0.5">VARIANCE GAP</text>
+    <text x="304" y="38" font-family="ui-monospace, monospace" font-size="15" font-weight="700" fill="#f43f5e">20 Units</text>
+
+    <!-- Pill 4 -->
+    <rect x="435" width="150" height="48" rx="10" fill="#881337" fill-opacity="0.4" stroke="#f43f5e" stroke-width="1.2"/>
+    <text x="449" y="20" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="800" fill="#fecdd3" letter-spacing="0.5">HELD PAYMENT</text>
+    <text x="449" y="38" font-family="ui-monospace, monospace" font-size="16" font-weight="800" fill="#fda4af">₹10,000.00</text>
+  </g>
+
+  <!-- Live Audit Compliance Banner -->
+  <g transform="translate(60, 350)">
+    <rect width="525" height="90" rx="12" fill="#0f172a" fill-opacity="0.8" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="26" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" fill="#a5b4fc" letter-spacing="0.8">ICAI SA-501 &amp; IND AS 2 STATUTORY COMPLIANCE REGISTER</text>
+    <text x="20" y="48" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">✓ Physical Goods Receipt Note (GRN) holds supreme legal evidentiary weight.</text>
+    <text x="20" y="68" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">✓ Counterparty emails carry 0% disbursement authority &bull; Zero Hallucination Audit.</text>
+  </g>
+
+  <!-- Right Visual Showcase: 4-Way Transaction Dossier Cards -->
+  <g transform="translate(640, 45)" filter="url(#shadow)">
+    <!-- Document 1: PO Card -->
+    <g transform="translate(0, 0)">
+      <rect width="240" height="185" rx="14" fill="url(#cardGrad)" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.5"/>
+      <rect x="15" y="15" width="28" height="28" rx="6" fill="#3b82f6" fill-opacity="0.2"/>
+      <text x="52" y="32" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#ffffff">PO-8921</text>
+      <text x="52" y="45" font-family="ui-monospace, monospace" font-size="9" fill="#94a3b8">Date: 2026-03-01</text>
+      <rect x="150" y="18" width="75" height="18" rx="4" fill="#3b82f6" fill-opacity="0.2"/>
+      <text x="155" y="30" font-family="ui-monospace, monospace" font-size="8" font-weight="700" fill="#93c5fd">Tier 2: Auth</text>
+      
+      <line x1="15" y1="55" x2="225" y2="55" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="75" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#64748b">Authorized Scope:</text>
+      <text x="15" y="93" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#e2e8f0">100 units @ ₹500</text>
+      <text x="15" y="112" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#64748b">Approved Total:</text>
+      <text x="15" y="132" font-family="ui-monospace, monospace" font-size="15" font-weight="800" fill="#38bdf8">₹50,000.00</text>
+      
+      <rect x="15" y="148" width="210" height="24" rx="6" fill="#0f172a"/>
+      <text x="25" y="164" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="600" fill="#34d399">✓ Signed by Procurement Division</text>
+    </g>
+
+    <!-- Document 2: Invoice Card -->
+    <g transform="translate(260, 0)">
+      <rect width="240" height="185" rx="14" fill="url(#cardGrad)" stroke="#818cf8" stroke-width="1" stroke-opacity="0.5"/>
+      <rect x="15" y="15" width="28" height="28" rx="6" fill="#818cf8" fill-opacity="0.2"/>
+      <text x="52" y="32" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#ffffff">INV-2026-4412</text>
+      <text x="52" y="45" font-family="ui-monospace, monospace" font-size="9" fill="#94a3b8">GST HSN 8482</text>
+      <rect x="145" y="18" width="80" height="18" rx="4" fill="#818cf8" fill-opacity="0.2"/>
+      <text x="150" y="30" font-family="ui-monospace, monospace" font-size="8" font-weight="700" fill="#c7d2fe">Tier 3: Demand</text>
+      
+      <line x1="15" y1="55" x2="225" y2="55" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="75" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#64748b">Billed Demand:</text>
+      <text x="15" y="93" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#e2e8f0">100 units @ ₹500</text>
+      <text x="15" y="112" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#64748b">Invoice Total:</text>
+      <text x="15" y="132" font-family="ui-monospace, monospace" font-size="15" font-weight="800" fill="#a5b4fc">₹50,000.00</text>
+
+      <rect x="15" y="148" width="210" height="24" rx="6" fill="#0f172a"/>
+      <text x="25" y="164" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="600" fill="#a5b4fc">Commercial Payment Claim</text>
+    </g>
+
+    <!-- Document 3: GRN Card (Supreme) -->
+    <g transform="translate(0, 205)">
+      <rect width="240" height="200" rx="14" fill="url(#cardGrad)" stroke="#10b981" stroke-width="1.8" filter="url(#glow)"/>
+      <rect width="240" height="200" rx="14" fill="url(#cardGrad)" stroke="#10b981" stroke-width="1.8"/>
+      <rect x="15" y="15" width="28" height="28" rx="6" fill="#10b981" fill-opacity="0.2"/>
+      <text x="52" y="32" font-family="ui-monospace, monospace" font-size="12" font-weight="800" fill="#ffffff">GRN-5510</text>
+      <text x="52" y="45" font-family="ui-monospace, monospace" font-size="9" fill="#6ee7b7">Bay 4 Inward Inspection</text>
+      <rect x="135" y="18" width="90" height="18" rx="4" fill="#10b981" fill-opacity="0.25"/>
+      <text x="140" y="30" font-family="ui-monospace, monospace" font-size="8" font-weight="800" fill="#6ee7b7">Tier 1: Supreme</text>
+      
+      <line x1="15" y1="55" x2="225" y2="55" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="75" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#64748b">Physically Received:</text>
+      <text x="15" y="93" font-family="ui-monospace, monospace" font-size="14" font-weight="800" fill="#10b981">80 units accepted</text>
+      <text x="15" y="112" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#64748b">Verified Payable Value:</text>
+      <text x="15" y="132" font-family="ui-monospace, monospace" font-size="16" font-weight="900" fill="#34d399">₹40,000.00</text>
+      
+      <rect x="15" y="148" width="210" height="38" rx="6" fill="#064e3b" fill-opacity="0.4" stroke="#059669" stroke-width="1"/>
+      <text x="25" y="164" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" fill="#a7f3d0">✓ Verified Physical Receiving Log</text>
+      <text x="25" y="178" font-family="ui-monospace, monospace" font-size="8" fill="#6ee7b7">Shortfall: -20 units noted on manifest</text>
+    </g>
+
+    <!-- Document 4: Correlated Dispute Email Card -->
+    <g transform="translate(260, 205)">
+      <rect width="240" height="200" rx="14" fill="url(#emailCardGrad)" stroke="#f59e0b" stroke-width="1.8"/>
+      <rect x="15" y="15" width="28" height="28" rx="6" fill="#f59e0b" fill-opacity="0.2"/>
+      <text x="52" y="32" font-family="ui-monospace, monospace" font-size="12" font-weight="800" fill="#ffffff">EML-VENDOR-89</text>
+      <text x="52" y="45" font-family="ui-monospace, monospace" font-size="9" fill="#fde68a">Apex Precision Logistics</text>
+      <rect x="135" y="18" width="90" height="18" rx="4" fill="#f59e0b" fill-opacity="0.25"/>
+      <text x="140" y="30" font-family="ui-monospace, monospace" font-size="8" font-weight="800" fill="#fde047">Tier 4: Correlated</text>
+      
+      <line x1="15" y1="55" x2="225" y2="55" stroke="#78350f" stroke-width="1"/>
+      <text x="15" y="75" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#fde68a">Tracked Counterparty Statement:</text>
+      
+      <rect x="15" y="85" width="210" height="42" rx="6" fill="#451a03" stroke="#b45309" stroke-width="1"/>
+      <text x="23" y="103" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700" fill="#fef08a" font-style="italic">
+        &ldquo;Remaining 20 units
+      </text>
+      <text x="23" y="118" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700" fill="#fef08a" font-style="italic">
+        will arrive later.&rdquo;
+      </text>
+
+      <rect x="15" y="140" width="210" height="46" rx="6" fill="#7f1d1d" fill-opacity="0.5" stroke="#dc2626" stroke-width="1"/>
+      <text x="23" y="157" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="800" fill="#fecaca">⚠️ ZERO PAYMENT AUTHORITY</text>
+      <text x="23" y="173" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#fca5a5">Cannot override GRN-5510. Payment held.</text>
+    </g>
+  </g>
+</svg>

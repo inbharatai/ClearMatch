@@ -462,35 +462,40 @@ assert(
 );
 
 // -------------------------------------------------------------------
-// 13. Rebuilt 16:9 Presentation Deck & Future Innovations Verification
+// 13. PPTX Slide Part Completely Removed & Core Image Assets Verified
 // -------------------------------------------------------------------
-console.log('\n[SECTION 13: Rebuilt 16:9 Presentation & Future Enterprise Innovations]');
-const pptxPath = path.resolve(process.cwd(), 'public/ClearMatch_AI_Future_Enterprise_Innovation_One_Slide_Final.pptx');
-const pptxExists = fs.existsSync(pptxPath);
-const pptxSize = pptxExists ? fs.statSync(pptxPath).size : 0;
+console.log('\n[SECTION 13: PPTX Slide Part Completely Removed & Image Assets Verified]');
+
+const pkgJson = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'package.json'), 'utf-8'));
+const hasPptxDep = Boolean(pkgJson.dependencies?.pptxgenjs || pkgJson.devDependencies?.pptxgenjs);
 
 assert(
-  'PPTX Rebuild: ClearMatch_AI_Future_Enterprise_Innovation_One_Slide_Final.pptx generated in public folder',
-  pptxExists && pptxSize > 10000,
-  'File exists with size > 10KB',
-  `Exists: ${pptxExists}, Size: ${(pptxSize / 1024).toFixed(1)} KB`
+  'PPTX Removal: pptxgenjs completely removed from package.json dependencies',
+  !hasPptxDep,
+  'false (no pptxgenjs)',
+  String(hasPptxDep)
 );
 
-const pptxScriptContent = fs.readFileSync(path.resolve(process.cwd(), 'scripts/generate_pptx.ts'), 'utf-8');
-assert(
-  'PPTX Innovations: Rebuilt slide incorporates 3 Enterprise Innovations (Evidence Graph, Policy Gate, Workflow Builder)',
-  pptxScriptContent.includes('EVIDENCE GRAPH') &&
-    pptxScriptContent.includes('POLICY + APPROVAL GATE') &&
-    pptxScriptContent.includes('UNIVERSAL WORKFLOW BUILDER'),
-  'Contains all 3 Enterprise Innovations',
-  'Found 3 Enterprise Innovations'
-);
+const serverCode = fs.readFileSync(path.resolve(process.cwd(), 'server.ts'), 'utf-8');
+const hasPptxRoute = serverCode.includes('/api/download/presentation');
 
 assert(
-  'PPTX Integrity: Explicitly marked as Future Roadmap — Not Implemented Today',
-  pptxScriptContent.includes('FUTURE ROADMAP — NOT IMPLEMENTED TODAY'),
-  'Contains Future Roadmap label',
-  'Found Future Roadmap label'
+  'PPTX Removal: presentation download endpoint completely removed from server.ts',
+  !hasPptxRoute,
+  'false (no presentation route)',
+  String(hasPptxRoute)
+);
+
+const bannerRootExists = fs.existsSync(path.resolve(process.cwd(), 'banner-hero.svg'));
+const pipelineRootExists = fs.existsSync(path.resolve(process.cwd(), 'pipeline-architecture.svg'));
+const bannerPublicExists = fs.existsSync(path.resolve(process.cwd(), 'public/banner-hero.svg'));
+const pipelinePublicExists = fs.existsSync(path.resolve(process.cwd(), 'public/pipeline-architecture.svg'));
+
+assert(
+  'Image Assets: banner-hero.svg and pipeline-architecture.svg exist in root and public',
+  bannerRootExists && pipelineRootExists && bannerPublicExists && pipelinePublicExists,
+  'All 4 asset paths exist',
+  `Root: banner=${bannerRootExists}, pipeline=${pipelineRootExists} | Public: banner=${bannerPublicExists}, pipeline=${pipelinePublicExists}`
 );
 
 // -------------------------------------------------------------------

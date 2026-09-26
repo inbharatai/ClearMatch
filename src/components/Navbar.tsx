@@ -1,12 +1,11 @@
 import React from 'react';
-import { ShieldCheck, FileSpreadsheet, Info, Download, Lock } from 'lucide-react';
+import { ShieldCheck, Info, Lock } from 'lucide-react';
 
 interface NavbarProps {
-  onOpenSlide: () => void;
   onOpenDisclosure: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenSlide, onOpenDisclosure }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenDisclosure }) => {
   return (
     <header className="no-print sticky top-0 z-40 border-b border-slate-800 bg-slate-900/90 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -35,28 +34,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSlide, onOpenDisclosure })
             <span>Server Gemini Boundary</span>
           </div>
 
-          <a
-            href="/api/download/presentation"
-            download="ClearMatch_AI_Future_Enterprise_Innovation_One_Slide_Final.pptx"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-teal-500/10 hover:bg-teal-500/20 text-teal-300 text-xs font-semibold border border-teal-500/30 transition-colors"
-            title="Download the revised one-slide PowerPoint presentation"
-          >
-            <Download className="w-3.5 h-3.5 text-teal-400" />
-            <span>Download PPTX</span>
-          </a>
-
-          <button
-            onClick={onOpenSlide}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition-colors"
-            title="Open printable 16:9 executive presentation slide"
-          >
-            <FileSpreadsheet className="w-4 h-4" />
-            <span>16:9 Slide</span>
-          </button>
-
           <button
             onClick={onOpenDisclosure}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition-colors cursor-pointer"
             title="View disclosure & compliance notes"
           >
             <Info className="w-4 h-4 text-slate-400" />

@@ -12,7 +12,6 @@ import { AiReasoningPanel } from './components/AiReasoningPanel';
 import { SearchGroundingPanel } from './components/SearchGroundingPanel';
 import { HumanReviewModal } from './components/HumanReviewModal';
 import { TaskList } from './components/TaskList';
-import { ExecutiveSlide169 } from './components/ExecutiveSlide169';
 import { AuditDisclosureModal } from './components/AuditDisclosureModal';
 import {
   AiReasoning,
@@ -69,7 +68,6 @@ export default function App() {
 
   // Modals
   const [showReviewModal, setShowReviewModal] = useState<boolean>(false);
-  const [showSlide169, setShowSlide169] = useState<boolean>(false);
   const [showDisclosureModal, setShowDisclosureModal] = useState<boolean>(false);
 
   // Toast Notification System
@@ -226,43 +224,79 @@ export default function App() {
     const localCalc = calculate3WayMatch(activePo, activeInvoice, activeGrn, activeEmail);
     setCalculation(localCalc);
 
-    try {
-      const response = await fetch('/api/reconcile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          po: activePo,
-          invoice: activeInvoice,
-          grn: activeGrn,
-          disputeEmail: activeEmail,
-          runAiReasoning: true,
-          simulateFailure,
-        }),
-      });
+    const performRequest = async (isRetry = false) => {
+      try {
+        const response = await fetch('/api/reconcile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            po: activePo,
+            invoice: activeInvoice,
+            grn: activeGrn,
+            disputeEmail: activeEmail,
+            runAiReasoning: true,
+            simulateFailure,
+          }),
+        });
 
-      const data = await response.json();
+        const contentType = response.headers.get('content-type') || '';
+        let data: any = null;
 
-      if (!response.ok) {
-        // Requirement 10: Honest error when server-side Gemini fails
-        setError(data.error || 'Server reconciliation failed');
-        setFailureType(data.failureType || `HTTP_${response.status}`);
-        setAiReasoning(null);
-        showToast(data.error || 'Reconciliation failed', 'error');
-      } else {
-        setCalculation(data.calculation);
-        setAiReasoning(data.aiReasoning);
-        if (userTriggered) {
-          showToast('Reconciliation complete! Gemini evaluated all 4 evidentiary records.', 'success');
+        if (contentType.includes('application/json')) {
+          data = await response.json();
+        } else {
+          const rawText = await response.text();
+          // Auto-retry once on transient 502/503/504 gateway response during container boot
+          if (!isRetry && (response.status === 502 || response.status === 503 || response.status === 504)) {
+            await new Promise((r) => setTimeout(r, 1200));
+            return performRequest(true);
+          }
+
+          if (!response.ok) {
+            setError(`AP audit server returned HTTP ${response.status}. Upstream gateway is initializing or unavailable.`);
+            setFailureType(`HTTP_${response.status}`);
+            setAiReasoning(null);
+            showToast(`Server temporary error (${response.status})`, 'error');
+            return;
+          }
+
+          try {
+            data = JSON.parse(rawText);
+          } catch {
+            data = { error: 'Non-JSON server response' };
+          }
         }
+
+        if (!response.ok) {
+          // Requirement 10: Honest error when server-side Gemini fails
+          setError(data?.error || `Server reconciliation failed (HTTP ${response.status})`);
+          setFailureType(data?.failureType || `HTTP_${response.status}`);
+          setAiReasoning(null);
+          showToast(data?.error || 'Reconciliation failed', 'error');
+        } else {
+          setError(null);
+          setFailureType(null);
+          setCalculation(data.calculation);
+          setAiReasoning(data.aiReasoning);
+          if (userTriggered) {
+            showToast('Reconciliation complete! Gemini evaluated all 4 evidentiary records.', 'success');
+          }
+        }
+      } catch (err: any) {
+        if (!isRetry) {
+          await new Promise((r) => setTimeout(r, 1200));
+          return performRequest(true);
+        }
+        const errMsg = `Network error connecting to AP audit server: ${err?.message || 'Connection failed'}`;
+        setError(errMsg);
+        setFailureType('NETWORK_ERROR');
+        showToast(errMsg, 'error');
+      } finally {
+        setLoading(false);
       }
-    } catch (err: any) {
-      const errMsg = `Network error connecting to AP audit server: ${err?.message}`;
-      setError(errMsg);
-      setFailureType('NETWORK_ERROR');
-      showToast(errMsg, 'error');
-    } finally {
-      setLoading(false);
-    }
+    };
+
+    performRequest(false);
   }, [activePo, activeInvoice, activeGrn, activeEmail, simulateFailure, showToast]);
 
   // Reconcile whenever active documents or simulateFailure changes
@@ -326,7 +360,6 @@ export default function App() {
 
       {/* Top Navigation */}
       <Navbar
-        onOpenSlide={() => setShowSlide169(true)}
         onOpenDisclosure={() => setShowDisclosureModal(true)}
       />
 
@@ -613,9 +646,9 @@ export default function App() {
             <div className="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 flex items-start gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
               <div>
-                <span className="font-semibold text-white">Req 12: Printable 16:9 Slide</span>
+                <span className="font-semibold text-white">Req 12: Dual Boundary Governance</span>
                 <p className="text-[11px] text-slate-400 font-mono">
-                  Zero clipping, perfect landscape printing.
+                  Code calculates, AI interprets, Human authorizes.
                 </p>
               </div>
             </div>
@@ -646,12 +679,6 @@ export default function App() {
         onClose={() => setShowReviewModal(false)}
         calculation={calculation}
         onTaskCreated={fetchTasks}
-      />
-
-      <ExecutiveSlide169
-        isOpen={showSlide169}
-        onClose={() => setShowSlide169(false)}
-        calculation={calculation}
       />
 
       <AuditDisclosureModal

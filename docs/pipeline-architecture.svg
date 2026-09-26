@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pipeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#090d1f"/>
+    </linearGradient>
+
+    <linearGradient id="activeNodeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2d1b69"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="420" fill="url(#pipeBg)"/>
+
+  <!-- Subtle connecting laser line -->
+  <line x1="100" y1="210" x2="1100" y2="210" stroke="#334155" stroke-width="3" stroke-dasharray="6 6"/>
+  <line x1="100" y1="210" x2="1100" y2="210" stroke="#6366f1" stroke-width="1.5" stroke-opacity="0.6"/>
+
+  <!-- Header -->
+  <g transform="translate(60, 45)">
+    <rect width="180" height="26" rx="13" fill="#6366f1" fill-opacity="0.2" stroke="#818cf8" stroke-width="1"/>
+    <text x="16" y="17" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="800" fill="#c7d2fe" letter-spacing="1">END-TO-END PIPELINE</text>
+    <text x="195" y="19" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="800" fill="#ffffff">
+      ClearMatch AI 6-Stage Internal Control &amp; AP Governance Architecture
+    </text>
+    <text x="195" y="38" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" fill="#94a3b8">
+      Zero-trust financial reconciliation: deterministic mathematics backed by server-mediated Gemini 3.1 Flash reasoning.
+    </text>
+  </g>
+
+  <!-- 6 Pipeline Nodes -->
+  <!-- NODE 1: Ingestion -->
+  <g transform="translate(50, 115)" filter="url(#cardShadow)">
+    <rect width="165" height="235" rx="14" fill="url(#nodeGrad)" stroke="#3b82f6" stroke-width="1.5"/>
+    <rect x="14" y="14" width="60" height="20" rx="4" fill="#3b82f6" fill-opacity="0.25"/>
+    <text x="20" y="28" font-family="ui-monospace, monospace" font-size="9" font-weight="800" fill="#93c5fd">STAGE 1</text>
+    <text x="14" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="800" fill="#ffffff">4-Way Dossier Ingestion</text>
+    <line x1="14" y1="65" x2="151" y2="65" stroke="#334155" stroke-width="1"/>
+    <text x="14" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#94a3b8">• PO-8921 (100 units)</text>
+    <text x="14" y="103" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#94a3b8">• Invoice (100 units)</text>
+    <text x="14" y="121" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#94a3b8">• GRN-5510 (80 units)</text>
+    <text x="14" y="139" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#94a3b8">• Email EML-89</text>
+    
+    <rect x="12" y="165" width="141" height="55" rx="8" fill="#0f172a" stroke="#1e293b"/>
+    <text x="18" y="183" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" fill="#38bdf8">Structural Ingestion</text>
+    <text x="18" y="198" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#64748b">Raw text preservation</text>
+    <text x="18" y="210" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#64748b">for quote proofing</text>
+  </g>
+
+  <!-- Laser Arrow 1 -> 2 -->
+  <polygon points="225,210 218,206 218,214" fill="#6366f1"/>
+
+  <!-- NODE 2: Email Review -->
+  <g transform="translate(235, 115)" filter="url(#cardShadow)">
+    <rect width="165" height="235" rx="14" fill="url(#nodeGrad)" stroke="#f59e0b" stroke-width="1.8"/>
+    <rect x="14" y="14" width="60" height="20" rx="4" fill="#f59e0b" fill-opacity="0.25"/>
+    <text x="20" y="28" font-family="ui-monospace, monospace" font-size="9" font-weight="800" fill="#fde047">STAGE 2</text>
+    <text x="14" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="800" fill="#ffffff">Email Review &amp; Tracking</text>
+    <line x1="14" y1="65" x2="151" y2="65" stroke="#334155" stroke-width="1"/>
+    <text x="14" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#cbd5e1">Tracked Statement:</text>
+    <rect x="12" y="93" width="141" height="42" rx="6" fill="#451a03" stroke="#b45309" stroke-width="1"/>
+    <text x="18" y="110" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" fill="#fef08a" font-style="italic">
+      &ldquo;Remaining 20 units
+    </text>
+    <text x="18" y="124" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" fill="#fef08a" font-style="italic">
+      will arrive later.&rdquo;
+    </text>
+    
+    <rect x="12" y="145" width="141" height="75" rx="8" fill="#7f1d1d" fill-opacity="0.4" stroke="#dc2626" stroke-width="1"/>
+    <text x="18" y="163" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="800" fill="#fecaca">UNTRUSTED CLAIM</text>
+    <text x="18" y="178" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#fca5a5">Correlates with 20-unit</text>
+    <text x="18" y="190" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#fca5a5">physical GRN shortfall.</text>
+    <text x="18" y="202" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" font-weight="700" fill="#fca5a5">Zero payment authority.</text>
+  </g>
+
+  <!-- Laser Arrow 2 -> 3 -->
+  <polygon points="410,210 403,206 403,214" fill="#6366f1"/>
+
+  <!-- NODE 3: Deterministic Match -->
+  <g transform="translate(420, 115)" filter="url(#cardShadow)">
+    <rect width="165" height="235" rx="14" fill="url(#nodeGrad)" stroke="#6366f1" stroke-width="1.5"/>
+    <rect x="14" y="14" width="60" height="20" rx="4" fill="#6366f1" fill-opacity="0.25"/>
+    <text x="20" y="28" font-family="ui-monospace, monospace" font-size="9" font-weight="800" fill="#c7d2fe">STAGE 3</text>
+    <text x="14" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="800" fill="#ffffff">3-Way Math Match</text>
+    <line x1="14" y1="65" x2="151" y2="65" stroke="#334155" stroke-width="1"/>
+    <text x="14" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#94a3b8">Invoice: 100 @ ₹500</text>
+    <text x="14" y="101" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#94a3b8">Accepted: 80 @ ₹500</text>
+    <text x="14" y="117" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700" fill="#f43f5e">Variance: 20 units</text>
+    
+    <rect x="12" y="135" width="141" height="85" rx="8" fill="#0f172a" stroke="#f43f5e" stroke-width="1"/>
+    <text x="18" y="153" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="800" fill="#fda4af">DETERMINISTIC HOLD</text>
+    <text x="18" y="173" font-family="ui-monospace, monospace" font-size="13" font-weight="800" fill="#f43f5e">₹10,000.00</text>
+    <text x="18" y="193" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#94a3b8">Payable: ₹40,000</text>
+    <text x="18" y="207" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#10b981">Zero math hallucination</text>
+  </g>
+
+  <!-- Laser Arrow 3 -> 4 -->
+  <polygon points="595,210 588,206 588,214" fill="#6366f1"/>
+
+  <!-- NODE 4: Evidentiary Hierarchy -->
+  <g transform="translate(605, 115)" filter="url(#cardShadow)">
+    <rect width="165" height="235" rx="14" fill="url(#nodeGrad)" stroke="#06b6d4" stroke-width="1.5"/>
+    <rect x="14" y="14" width="60" height="20" rx="4" fill="#06b6d4" fill-opacity="0.25"/>
+    <text x="20" y="28" font-family="ui-monospace, monospace" font-size="9" font-weight="800" fill="#67e8f9">STAGE 4</text>
+    <text x="14" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="800" fill="#ffffff">Evidentiary Hierarchy</text>
+    <line x1="14" y1="65" x2="151" y2="65" stroke="#334155" stroke-width="1"/>
+    <text x="14" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700" fill="#38bdf8">Rule AP-02 Enforced</text>
+    <text x="14" y="103" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" fill="#94a3b8">GRN is Tier 1 Supreme</text>
+    <text x="14" y="119" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" fill="#94a3b8">Email is Tier 4 Non-Auth</text>
+    
+    <rect x="12" y="135" width="141" height="85" rx="8" fill="#0f172a" stroke="#0891b2"/>
+    <text x="18" y="153" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" fill="#67e8f9">Statutory Grounding</text>
+    <text x="18" y="170" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#cbd5e1">• ICAI SA-501 (Physical)</text>
+    <text x="18" y="184" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#cbd5e1">• Ind AS 2 (Inventories)</text>
+    <text x="18" y="198" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#cbd5e1">• GST HSN 8482 (18%)</text>
+    <text x="18" y="210" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#10b981">Verified via Search API</text>
+  </g>
+
+  <!-- Laser Arrow 4 -> 5 -->
+  <polygon points="780,210 773,206 773,214" fill="#6366f1"/>
+
+  <!-- NODE 5: Provenance Proof -->
+  <g transform="translate(790, 115)" filter="url(#cardShadow)">
+    <rect width="165" height="235" rx="14" fill="url(#nodeGrad)" stroke="#10b981" stroke-width="1.8"/>
+    <rect x="14" y="14" width="60" height="20" rx="4" fill="#10b981" fill-opacity="0.25"/>
+    <text x="20" y="28" font-family="ui-monospace, monospace" font-size="9" font-weight="800" fill="#6ee7b7">STAGE 5</text>
+    <text x="14" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="800" fill="#ffffff">Quotation Provenance</text>
+    <line x1="14" y1="65" x2="151" y2="65" stroke="#334155" stroke-width="1"/>
+    <text x="14" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#94a3b8">Every Gemini citation</text>
+    <text x="14" y="100" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#94a3b8">tested character-for-</text>
+    <text x="14" y="115" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#94a3b8">character in raw files.</text>
+    
+    <rect x="12" y="135" width="141" height="85" rx="8" fill="#064e3b" fill-opacity="0.4" stroke="#059669"/>
+    <text x="18" y="153" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="800" fill="#34d399">VERIFIED PROVENANCE</text>
+    <text x="18" y="170" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#a7f3d0">✓ &ldquo;Remaining 20 units...&rdquo;</text>
+    <text x="18" y="184" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#a7f3d0">✓ &ldquo;80 units accepted&rdquo;</text>
+    <text x="18" y="198" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#a7f3d0">✓ &ldquo;100 units @ 500&rdquo;</text>
+    <text x="18" y="210" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" font-weight="700" fill="#6ee7b7">Zero Hallucination</text>
+  </g>
+
+  <!-- Laser Arrow 5 -> 6 -->
+  <polygon points="965,210 958,206 958,214" fill="#6366f1"/>
+
+  <!-- NODE 6: Human Governance -->
+  <g transform="translate(975, 115)" filter="url(#cardShadow)">
+    <rect width="175" height="235" rx="14" fill="url(#activeNodeGrad)" stroke="#a855f7" stroke-width="2"/>
+    <rect x="14" y="14" width="60" height="20" rx="4" fill="#a855f7" fill-opacity="0.25"/>
+    <text x="20" y="28" font-family="ui-monospace, monospace" font-size="9" font-weight="800" fill="#e9d5ff">STAGE 6</text>
+    <text x="14" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="800" fill="#ffffff">Human Governance</text>
+    <line x1="14" y1="65" x2="161" y2="65" stroke="#334155" stroke-width="1"/>
+    <text x="14" y="85" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700" fill="#c084fc">Separation of Duties</text>
+    <text x="14" y="101" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" fill="#94a3b8">• No auto-disbursement</text>
+    <text x="14" y="116" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" fill="#94a3b8">• AP draft letter held</text>
+    <text x="14" y="131" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" fill="#94a3b8">• Human confirms review</text>
+    
+    <rect x="12" y="148" width="151" height="72" rx="8" fill="#3b0764" fill-opacity="0.5" stroke="#9333ea"/>
+    <text x="18" y="166" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="800" fill="#f3e8ff">FINAL LOCK</text>
+    <text x="18" y="181" font-family="ui-monospace, monospace" font-size="9" font-weight="700" fill="#d8b4fe">0xA9E3D4AFEFEE2FBF</text>
+    <text x="18" y="195" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#e9d5ff">Cryptographic audit hash</text>
+    <text x="18" y="208" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" font-weight="700" fill="#c084fc">SOX Non-Repudiation</text>
+  </g>
+
+  <!-- Bottom Legend Bar -->
+  <g transform="translate(50, 365)">
+    <rect width="1100" height="35" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <circle cx="25" cy="18" r="4" fill="#10b981"/>
+    <text x="38" y="22" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#cbd5e1">100% Deterministic Arithmetic</text>
+
+    <circle cx="270" cy="18" r="4" fill="#f59e0b"/>
+    <text x="283" y="22" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#cbd5e1">Supplier Emails Untrusted (ICAI SA-501)</text>
+
+    <circle cx="590" cy="18" r="4" fill="#06b6d4"/>
+    <text x="603" y="22" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#cbd5e1">Live Google Search Statutory Grounding</text>
+
+    <circle cx="910" cy="18" r="4" fill="#a855f7"/>
+    <text x="923" y="22" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#cbd5e1">Zero Auto-Payment Release Lock</text>
+  </g>
+</svg>
